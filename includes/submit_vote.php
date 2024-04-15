@@ -1,6 +1,6 @@
 <?php
 // Verificar si se ha recibido una solicitud POST
-if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Incluir archivo de conexión a la base de datos
     require_once '../config/database.php';
 
@@ -30,6 +30,75 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     if ($emailExistsRow['count'] > 0) {
         echo "Error: El email ya ha sido registrado.";
         exit; // Salir del script si el email ya existe
+    }
+
+    // Verificar si el dominio del correo electrónico es válido
+    $allowedDomains = array(
+        "gmail.com",
+        "yahoo.com",
+        "outlook.com",
+        "hotmail.com",
+        "aol.com",
+        "apple.com",
+        "ibm.com",
+        "microsoft.com",
+        "amazon.com",
+        "facebook.com",
+        "twitter.com",
+        "linkedin.com",
+        "uber.com",
+        "airbnb.com",
+        "netflix.com",
+        "spotify.com",
+        "paypal.com",
+        "visa.com",
+        "mastercard.com",
+        "americanexpress.com",
+        "bankofamerica.com",
+        "chase.com",
+        "wellsfargo.com",
+        "citi.com",
+        "capitalone.com",
+        "att.com",
+        "verizon.com",
+        "comcast.net",
+        "sprint.com",
+        "tmobile.com",
+        "sony.com",
+        "nintendo.com",
+        "samsung.com",
+        "lg.com",
+        "toyota.com",
+        "honda.com",
+        "bmw.com",
+        "mercedes-benz.com",
+        // Dominios .cl
+        "entel.cl",
+        "lan.cl",
+        "latam.cl",
+        "movistar.cl",
+        "ripley.cl",
+        "falabella.cl",
+        "sodimac.cl",
+        "cencosud.cl",
+        "paris.cl",
+        "bci.cl",
+        "bancoestado.cl",
+        "santander.cl",
+        "bci.cl",
+        "ripley.cl",
+        "falabella.cl",
+        "paris.cl",
+        "latam.cl",
+        "uco.cl",
+        // Agrega más dominios aquí según consideres empresas legítimas
+    );
+
+    $emailParts = explode("@", $email);
+    $domain = end($emailParts);
+    if (!in_array($domain, $allowedDomains)) {
+        echo "Error: El dominio del correo electrónico no es válido.";
+        exit; // Salir del script si el dominio del correo electrónico no es válido
     }
 
     // Insertar los datos en la base de datos

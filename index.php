@@ -113,5 +113,32 @@ function obtenerCandidatos($conn) {
         <input type="submit" value="Votar">
     </form>
     <div id="result"></div>
+    <script>
+    $(document).ready(function() {
+        $("#voteForm").submit(function(event) {
+            event.preventDefault(); // Evita el envío del formulario por defecto
+
+            const rut = $("#rut").val();
+            console.log("RUT ingresado:", rut);
+
+            if (!validateRutChileno(rut)) {
+                alert("El RUT ingresado no es válido.");
+                return; // Detiene el envío del formulario si el RUT no es válido
+            }
+
+            // Si el RUT es válido, continuar con el envío del formulario
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "includes/submit_vote.php",
+                data: formData,
+                success: function(response) {
+                    $("#result").html(response);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

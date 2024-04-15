@@ -1,0 +1,18 @@
+-- Inserts para la tabla regiones
+INSERT INTO regiones (nombre) VALUES ('Metropolitana');
+INSERT INTO regiones (nombre) VALUES ('Valparaiso');
+INSERT INTO regiones (nombre) VALUES ('Arica');
+-- ...continúa con el resto de las regiones
+
+-- Inserts para la tabla comunas, asumiendo que los IDs de regiones comienzan en 1 y aumentan secuencialmente
+INSERT INTO comunas (region_id, nombre) VALUES (1, 'Las Condes');
+INSERT INTO comunas (region_id, nombre) VALUES (2, 'Viña del mar');
+INSERT INTO comunas (region_id, nombre) VALUES (3, 'Camarones');
+-- ...continúa con el resto de las comunas
+
+-- Inserts para la tabla candidatos, asumiendo que los IDs de comunas comienzan en 1 y aumentan secuencialmente
+INSERT INTO candidatos (comuna_id, nombre) VALUES (1, 'Johannes Kaiser');
+INSERT INTO candidatos (comuna_id, nombre) VALUES (2, 'Franco Parisi');
+INSERT INTO candidatos (comuna_id, nombre) VALUES (3, 'Camila Vallejos');
+
+

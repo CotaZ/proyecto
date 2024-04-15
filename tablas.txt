@@ -1,0 +1,34 @@
+-- Tabla regiones
+CREATE TABLE regiones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+-- Tabla comunas
+CREATE TABLE comunas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    region_id INT NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    FOREIGN KEY (region_id) REFERENCES regiones(id)
+);
+
+-- Tabla candidatos
+CREATE TABLE candidatos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comuna_id INT NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    FOREIGN KEY (comuna_id) REFERENCES comunas(id)
+);
+
+-- Tabla votes
+CREATE TABLE votes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    alias VARCHAR(255) NOT NULL,
+    rut VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    region INT NOT NULL,
+    comuna INT NOT NULL,
+    candidato INT NOT NULL,
+    source VARCHAR(255) NOT NULL
+);
